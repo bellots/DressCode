@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension Property where Element: AnyObject {
+public extension Property where Element: AnyObject {
     static func custom<Value>(_ value: Value, keyPath: ReferenceWritableKeyPath<Element, Value>)  -> Property<Element> {
         return Property<Element> {
             $0[keyPath: keyPath] = value
@@ -43,7 +43,7 @@ public extension Property where Element: UIView {
     }
 }
 
-extension Property where Element: UILabel {
+public extension Property where Element: UILabel {
     static func color(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.textColor)
     }
@@ -61,7 +61,7 @@ extension Property where Element: UILabel {
     }
 }
 
-extension Property where Element: UIButton {
+public extension Property where Element: UIButton {
 
     static func color(_ value: UIColor, for state: UIButton.State = .normal) -> Property<Element> {
         .custom { $0.setTitleColor(value, for: state) }

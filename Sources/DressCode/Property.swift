@@ -13,13 +13,13 @@ public struct Property<Element> {
 }
 
 public extension Property {
-    public func combine(_ style: Property<Element>) -> Property<Element> {
+    func combine(_ style: Property<Element>) -> Property<Element> {
         return Property<Element> {
             self.style($0)
             style.style($0)
         }
     }
-    public static func combined(_ properties:Property<Element>...)->Property<Element>{
+    static func combined(_ properties:Property<Element>...)->Property<Element>{
         properties.reduce(properties.first!, {$0.combine($1)})
     }
 }

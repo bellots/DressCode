@@ -9,19 +9,19 @@
 import Foundation
 import UIKit
 
-@objc protocol Stylable {
+public protocol Stylable {
     init()
 }
 
-extension UIView: Stylable {}
+public extension UIView: Stylable {}
 
-extension Stylable where Self:UIView{
+public extension Stylable where Self:UIView{
     static func setStylesGlobally(_ styles: Property<Self>...){
         styles.forEach({_ in Self.appearance().apply(styles)})
     }
 }
 
-extension Stylable {
+public extension Stylable {
     
     init(_ style: Property<Self>...) {
         self.init()
