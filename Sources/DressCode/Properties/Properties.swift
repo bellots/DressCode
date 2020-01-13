@@ -21,7 +21,7 @@ extension Property where Element: AnyObject {
     }
 }
 
-extension Property where Element: UIView {
+public extension Property where Element: UIView {
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.backgroundColor)
     }
