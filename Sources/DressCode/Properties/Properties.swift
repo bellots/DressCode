@@ -14,8 +14,8 @@ public extension Property where Element: AnyObject {
             $0[keyPath: keyPath] = value
         }
     }
-    static func custom(closure: @escaping (Element) -> () )  -> Property<Element> {
-        public return Property<Element> { element in
+    public static func custom(closure: @escaping (Element) -> () )  -> Property<Element> {
+        return Property<Element> { element in
             closure(element)
         }
     }
