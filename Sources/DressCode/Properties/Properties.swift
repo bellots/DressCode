@@ -9,13 +9,13 @@
 import UIKit
 
 public extension Property where Element: AnyObject {
-    static func custom<Value>(_ value: Value, keyPath: ReferenceWritableKeyPath<Element, Value>)  -> Property<Element> {
+    public static func custom<Value>(_ value: Value, keyPath: ReferenceWritableKeyPath<Element, Value>)  -> Property<Element> {
         return Property<Element> {
             $0[keyPath: keyPath] = value
         }
     }
     static func custom(closure: @escaping (Element) -> () )  -> Property<Element> {
-        return Property<Element> { element in
+        public return Property<Element> { element in
             closure(element)
         }
     }
