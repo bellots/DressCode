@@ -13,7 +13,7 @@ public protocol Stylable {
     init()
 }
 
-public extension UIView: Stylable {}
+extension UIView: Stylable {}
 
 public extension Stylable where Self:UIView{
     static func setStylesGlobally(_ styles: Property<Self>...){

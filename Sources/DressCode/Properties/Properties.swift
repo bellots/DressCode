@@ -9,12 +9,12 @@
 import UIKit
 
 public extension Property where Element: AnyObject {
-    public static func custom<Value>(_ value: Value, keyPath: ReferenceWritableKeyPath<Element, Value>)  -> Property<Element> {
+    static func custom<Value>(_ value: Value, keyPath: ReferenceWritableKeyPath<Element, Value>)  -> Property<Element> {
         return Property<Element> {
             $0[keyPath: keyPath] = value
         }
     }
-    public static func custom(closure: @escaping (Element) -> () )  -> Property<Element> {
+    static func custom(closure: @escaping (Element) -> () )  -> Property<Element> {
         return Property<Element> { element in
             closure(element)
         }
@@ -44,7 +44,7 @@ public extension Property where Element: UIView {
 }
 
 public extension Property where Element: UILabel {
-    public static func color(_ value: UIColor) -> Property<Element> {
+    static func color(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.textColor)
     }
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
