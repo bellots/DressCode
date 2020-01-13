@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Property<Element> {
+public struct Property<Element> {
     let style: (Element) -> Void
 }
 
