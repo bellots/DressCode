@@ -44,7 +44,7 @@ public extension Property where Element: UIView {
 }
 
 public extension Property where Element: UILabel {
-    static func color(_ value: UIColor) -> Property<Element> {
+    public static func color(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.textColor)
     }
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
