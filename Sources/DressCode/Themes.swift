@@ -8,7 +8,7 @@
 import UIKit
 
 public extension StyleView where View:UILabel{
-    func style(for theme:Theme = .light) -> Property<View> {
+    func style(for theme:Theme) -> Property<View> {
         switch theme {
         case .light:
             switch self {
@@ -39,7 +39,7 @@ public extension StyleView where View:UILabel{
 }
 
 public extension StyleView where View:UIButton{
-    func style(for theme:Theme = .light) -> Property<View> {
+    func style(for theme:Theme) -> Property<View> {
         switch theme {
         case .light:
             switch self {

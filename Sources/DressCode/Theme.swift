@@ -17,7 +17,7 @@ public enum StyleView<View>:String, CaseIterable{
     case secondary
     case accent
     
-    func style(for theme:Theme = .light) -> Property<View> {
+    func style(for theme:Theme) -> Property<View> {
         return .empty()
     }
 }

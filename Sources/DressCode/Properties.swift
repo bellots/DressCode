@@ -28,20 +28,20 @@ public extension Property {
 }
 
 public extension Property {
-    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
-        return styleView.style()
+    static func theme(for styleView:StyleView<Element>, for theme:Theme = .light) -> Property<Element>{
+        return styleView.style(for: theme)
     }
 }
 
 public extension Property where Element:UILabel{
-    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
-        return styleView.style()
+    static func theme(for styleView:StyleView<Element>, for theme:Theme = .light) -> Property<Element>{
+        return styleView.style(for: theme)
     }
 }
 
 public extension Property where Element:UIButton{
-    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
-        return styleView.style()
+    static func theme(for styleView:StyleView<Element>, for theme:Theme = .light) -> Property<Element>{
+        return styleView.style(for: theme)
     }
 }
 
