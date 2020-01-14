@@ -30,8 +30,8 @@ public extension StyleView where View:UILabel{
                 )
             case .accent:
                 return .combined(
-                    .backgroundColor(.green),
-                    .color(.white)
+                    .backgroundColor(.white),
+                    .color(.green)
                 )
             }
         }
@@ -53,11 +53,14 @@ public extension StyleView where View:UIButton{
         case .dark:
             switch self {
             case .primary:
-                return .color(.white)
-            case .secondary:
                 return .combined(
                     .backgroundColor(.white),
-                    .color(.gray)
+                    .color(.black)
+                )
+            case .secondary:
+                return .combined(
+                    .backgroundColor(.gray),
+                    .color(.black)
                 )
             case .accent:
                 return .combined(
