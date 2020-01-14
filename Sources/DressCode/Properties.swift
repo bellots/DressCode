@@ -21,6 +21,30 @@ public extension Property where Element: AnyObject {
     }
 }
 
+public extension Property {
+    static func empty() -> Property<Element>{
+        return Property<Element> {_ in }
+    }
+}
+
+public extension Property {
+    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
+        return styleView.style()
+    }
+}
+
+public extension Property where Element:UILabel{
+    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
+        return styleView.style()
+    }
+}
+
+public extension Property where Element:UIButton{
+    static func theme(for styleView:StyleView<Element>) -> Property<Element>{
+        return styleView.style()
+    }
+}
+
 public extension Property where Element: UIView {
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.backgroundColor)
