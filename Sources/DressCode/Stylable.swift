@@ -28,6 +28,10 @@ public extension Stylable {
         apply(style)
     }
     
+    func setStyle(_ styleView:StyleView<Self>, for theme:Theme = .light){
+        apply([styleView.style(for: theme)])
+    }
+    
     func setStyle(_ styles: Property<Self>...) {
         styles.forEach({$0.style(self)})
     }

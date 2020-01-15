@@ -44,11 +44,20 @@ public extension StyleView where View:UIButton{
         case .light:
             switch self {
             case .primary:
-                return .color(.black)
+                return .combined(
+                    .backgroundColor(.white),
+                    .color(.black)
+                )
             case .secondary:
-                return .color(.gray)
+                return .combined(
+                    .backgroundColor(.white),
+                    .color(.gray)
+                )
             case .accent:
-                return .color(.green)
+                return .combined(
+                    .backgroundColor(.white),
+                    .color(.green)
+                )
             }
         case .dark:
             switch self {
