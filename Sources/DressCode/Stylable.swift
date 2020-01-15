@@ -28,7 +28,7 @@ public extension Stylable {
         apply(style)
     }
     
-    func setStyle(_ styleView:StyleView<Self>, for theme:Theme = .light){
+    func setStyle(_ styleView:StyleView<Self>, for theme:Theme = ThemeFactory.current){
         setStyle(styleView.style(for: theme))
     }
     

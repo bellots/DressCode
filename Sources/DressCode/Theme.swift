@@ -7,6 +7,10 @@
 
 import Foundation
 
+public struct ThemeFactory{
+    public static var current:Theme = .light
+}
+
 public enum Theme{
     case light
     case dark
