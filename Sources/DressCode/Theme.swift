@@ -7,13 +7,27 @@
 
 import Foundation
 
+public protocol ThemeFactoryDelegate:class{
+    func didUpdateTheme(to theme: Theme)
+}
+
 public struct ThemeFactory{
     public static var defaultTheme:Theme = .light
-    public var current:Theme
-
-    public init(theme:Theme = .light){
-        self.current = theme
+    
+    public var current:Theme {
+        didSet{
+            delegate?.didUpdateTheme(to: current)
+        }
     }
+    
+    public weak var delegate:ThemeFactoryDelegate?
+    
+    public init(theme:Theme, delegate:ThemeFactoryDelegate? = nil){
+        self.current = theme
+        self.delegate = delegate
+    }
+    
+    
 }
 
 public enum Theme{
