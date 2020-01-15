@@ -8,6 +8,32 @@
 import UIKit
 
 public extension StyleView where View:UILabel{
+    func applyStyle(for theme:Theme = .light, to views:View...){
+        views.forEach({$0.setStyle(self.style(for: theme))})
+    }
+}
+
+public extension StyleView where View:UIButton{
+    func applyStyle(for theme:Theme = .light, to views:View...){
+        views.forEach({$0.setStyle(self.style(for: theme))})
+    }
+}
+
+
+public extension UILabel{
+    func setStyle(_ styleView:StyleView<UILabel>, for theme:Theme = .light){
+        setStyle(styleView.style(for: theme))
+    }
+}
+
+public extension UIButton{
+    func setStyle(_ styleView:StyleView<UIButton>, for theme:Theme = .light){
+        setStyle(styleView.style(for: theme))
+    }
+}
+
+
+public extension StyleView where View:UILabel{
     func style(for theme:Theme) -> Property<View> {
         switch theme {
         case .light:
