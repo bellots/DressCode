@@ -29,7 +29,7 @@ public extension Stylable {
     }
     
     func setStyle(_ styleView:StyleView<Self>, for theme:Theme = .light){
-        apply([styleView.style(for: theme)])
+        setStyle(styleView.style(for: theme))
     }
     
     func setStyle(_ styles: Property<Self>...) {
