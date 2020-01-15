@@ -8,7 +8,8 @@
 import Foundation
 
 public struct ThemeFactory{
-    public static var current:Theme = .light
+    public static var defaultTheme:Theme = .light
+    var current:Theme = .light
 }
 
 public enum Theme{
