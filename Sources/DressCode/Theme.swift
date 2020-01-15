@@ -9,7 +9,7 @@ import Foundation
 
 public struct ThemeFactory{
     public static var defaultTheme:Theme = .light
-    var current:Theme
+    public var current:Theme
 
     public init(theme:Theme = .light){
         self.current = theme
