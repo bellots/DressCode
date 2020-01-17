@@ -27,11 +27,7 @@ public extension Stylable {
         self.init()
         apply(style)
     }
-    
-    func setStyle(_ styleView:StyleView<Self>, for theme:Theme = ThemeFactory.defaultTheme){
-        setStyle(styleView.style(for: theme))
-    }
-    
+        
     func setStyle(_ styles: Property<Self>...) {
         styles.forEach({$0.style(self)})
     }

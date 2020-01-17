@@ -6,15 +6,37 @@
 //
 
 import Foundation
+import UIKit
+
+
+public protocol Themeable{
+    static var defaultTheme: Themeable { get }
+}
+
+public enum Theme:Themeable{
+    
+    public static var defaultTheme: Themeable{
+        return Self.light
+    }
+    
+    case light
+    case dark
+    
+}
+
+public protocol StylableView{
+    associatedtype View
+    
+    func style(for theme:Themeable) -> Property<View>
+}
 
 public protocol ThemeFactoryDelegate:class{
-    func didUpdateTheme(to theme: Theme)
+    func didUpdateTheme(to theme: Themeable)
 }
 
 public struct ThemeFactory{
-    public static var defaultTheme:Theme = .light
     
-    public var current:Theme {
+    public var current:Themeable {
         didSet{
             delegate?.didUpdateTheme(to: current)
         }
@@ -22,25 +44,9 @@ public struct ThemeFactory{
     
     public weak var delegate:ThemeFactoryDelegate?
     
-    public init(theme:Theme, delegate:ThemeFactoryDelegate? = nil){
+    public init(theme:Themeable, delegate:ThemeFactoryDelegate? = nil){
         self.current = theme
         self.delegate = delegate
     }
-    
-    
-}
 
-public enum Theme{
-    case light
-    case dark
-}
-
-public enum StyleView<View>:String, CaseIterable{
-    case primary
-    case secondary
-    case accent
-    
-    func style(for theme:Theme) -> Property<View> {
-        return .empty()
-    }
 }

@@ -27,23 +27,23 @@ public extension Property {
     }
 }
 
-public extension Property {
-    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
-        return styleView.style(for: theme)
-    }
-}
-
-public extension Property where Element:UILabel{
-    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
-        return styleView.style(for: theme)
-    }
-}
-
-public extension Property where Element:UIButton{
-    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
-        return styleView.style(for: theme)
-    }
-}
+//public extension Property {
+//    static func theme(for styleView:StyleView<Element>, forTheme theme:Themeable = ThemeFactory.defaultTheme) -> Property<Element>{
+//        return styleView.style(for: theme)
+//    }
+//}
+//
+//public extension Property where Element:UILabel{
+//    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
+//        return styleView.style(for: theme)
+//    }
+//}
+//
+//public extension Property where Element:UIButton{
+//    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
+//        return styleView.style(for: theme)
+//    }
+//}
 
 public extension Property where Element: UIView {
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
