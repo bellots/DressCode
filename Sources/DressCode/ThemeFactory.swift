@@ -36,7 +36,7 @@ public struct ThemeFactory<Theme:Themeable>{
     
     var viewControllerToUpdate:[ViewControllerThemeable]
     
-    mutating func registerUpdates(for viewController:ViewControllerThemeable) {
+    mutating public func registerUpdates(for viewController:ViewControllerThemeable) {
         viewControllerToUpdate.append(viewController)
     }
 }
