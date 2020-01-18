@@ -11,9 +11,9 @@ public protocol ThemeFactoryDelegate:class{
     func didUpdateTheme(to theme: Themeable)
 }
 
-public struct ThemeFactory{
+public struct ThemeFactory<Theme:Themeable>{
     
-    public var current:Themeable {
+    public var current:Theme {
         didSet{
             delegate?.didUpdateTheme(to: current)
         }
@@ -21,7 +21,7 @@ public struct ThemeFactory{
     
     public weak var delegate:ThemeFactoryDelegate?
     
-    public init(theme:Themeable, delegate:ThemeFactoryDelegate? = nil){
+    public init(theme:Theme, delegate:ThemeFactoryDelegate? = nil){
         self.current = theme
         self.delegate = delegate
     }
