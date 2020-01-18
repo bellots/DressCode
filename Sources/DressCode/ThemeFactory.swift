@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ThemeFactoryDelegate:class{
-    func didUpdateTheme<Theme:Themeable>(to theme: Theme)
+    func didUpdateTheme(to theme: Themeable)
 }
 
 public struct ThemeFactory<Theme:Themeable>{
