@@ -8,10 +8,8 @@
 import UIKit
 
 
-
-
-public extension TestStylableView where View:UILabel{
-    func style(for theme:Theme) -> Property<View> {
+public extension ExampleStylableView where View:UILabel{
+    func style(for theme:ExampleThemeable) -> Property<View> {
         switch theme {
         case .light:
             switch self {
@@ -41,8 +39,8 @@ public extension TestStylableView where View:UILabel{
     }
 }
 
-public extension TestStylableView where View:UIButton{
-    func style(for theme:Theme) -> Property<View> {
+public extension ExampleStylableView where View:UIButton{
+    func style(for theme:ExampleThemeable) -> Property<View> {
         switch theme {
         case .light:
             switch self {

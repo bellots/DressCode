@@ -1,34 +1,11 @@
 //
-//  Theme.swift
+//  ThemeFactory.swift
 //  
 //
-//  Created by Andrea Bellotto on 14/01/2020.
+//  Created by Andrea Bellotto on 18/01/2020.
 //
 
 import Foundation
-import UIKit
-
-
-public protocol Themeable{
-    static var defaultTheme: Themeable { get }
-}
-
-public enum Theme:Themeable{
-    
-    public static var defaultTheme: Themeable{
-        return Self.light
-    }
-    
-    case light
-    case dark
-    
-}
-
-public protocol StylableView{
-    associatedtype View
-    
-    func style(for theme:Themeable) -> Property<View>
-}
 
 public protocol ThemeFactoryDelegate:class{
     func didUpdateTheme(to theme: Themeable)
