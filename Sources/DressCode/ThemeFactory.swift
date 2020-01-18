@@ -12,7 +12,7 @@ public protocol ThemeFactoryDelegate:class{
     func didUpdateTheme(to theme: Themeable)
 }
 
-public struct ThemeFactory<Theme:Themeable>{
+public class ThemeFactory<Theme:Themeable>{
     
     public var current:Theme {
         didSet{
@@ -36,7 +36,7 @@ public struct ThemeFactory<Theme:Themeable>{
     
     var viewControllerToUpdate = [ViewControllerThemeable]()
     
-    public mutating func registerUpdates(for viewController:ViewControllerThemeable) {
+    public func registerUpdates(for viewController:ViewControllerThemeable) {
         viewControllerToUpdate.append(viewController)
     }
 }
