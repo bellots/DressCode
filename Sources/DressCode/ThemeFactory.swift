@@ -18,6 +18,12 @@ public class ThemeFactory<Theme:Themeable>{
         didSet{
             viewControllerToUpdate.forEach({$0.setupStyles(for: current)})
             delegate?.didUpdateTheme(to: current)
+            for window in UIApplication.shared.windows {
+                for view in window.subviews {
+                    view.removeFromSuperview()
+                    window.addSubview(view)
+                }
+            }
         }
     }
     
