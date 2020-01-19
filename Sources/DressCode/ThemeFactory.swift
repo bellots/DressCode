@@ -45,4 +45,8 @@ public class ThemeFactory<Theme:Themeable>{
     public func registerUpdates(for viewController:ViewControllerThemeable) {
         viewControllerToUpdate.append(viewController)
     }
+    
+    public func setupStyles(){
+        viewControllerToUpdate.forEach({$0.setupStyles(for: current)})
+    }
 }
