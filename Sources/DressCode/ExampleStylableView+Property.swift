@@ -11,7 +11,7 @@ import UIKit
 public extension ExampleStylableView where View:UILabel{
     func style(for theme:Themeable) -> Property<View> {
         switch theme {
-        case .light:
+        case ExampleThemeable.light:
             switch self {
             case .primary:
                 return .color(.black)
@@ -20,7 +20,7 @@ public extension ExampleStylableView where View:UILabel{
             case .accent:
                 return .color(.green)
             }
-        case .dark:
+        case ExampleThemeable.dark:
             switch self {
             case .primary:
                 return .color(.white)
