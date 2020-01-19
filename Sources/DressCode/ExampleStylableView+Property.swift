@@ -35,6 +35,8 @@ public extension ExampleStylableView where View:UILabel{
                     .color(.green)
                 )
             }
+        default:
+            return .empty()
         }
     }
 }
@@ -78,6 +80,8 @@ public extension ExampleStylableView where View:UIButton{
                     .color(.white)
                 )
             }
+        default:
+            return .empty()
         }
     }
 }
