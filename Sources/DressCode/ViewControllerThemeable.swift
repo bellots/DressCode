@@ -11,3 +11,8 @@ public protocol ViewControllerThemeable:UIViewController {
     func setupStyles(for theme:Themeable)
 }
 
+extension UIViewController:ViewControllerThemeable{
+    public func setupStyles(for theme: Themeable) {
+        
+    }
+}
