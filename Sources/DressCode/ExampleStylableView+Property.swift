@@ -10,9 +10,6 @@ import UIKit
 
 public extension ExampleStylableView where View:UILabel{
     func style(for theme:Themeable) -> Property<View> {
-        guard let theme = theme as? ExampleThemeable else {
-            return .empty()
-        }
         switch theme {
         case .light:
             switch self {
@@ -44,11 +41,8 @@ public extension ExampleStylableView where View:UILabel{
 
 public extension ExampleStylableView where View:UIButton{
     func style(for theme:Themeable) -> Property<View> {
-        guard let theme = theme as? ExampleThemeable else {
-            return .empty()
-        }
         switch theme {
-        case .light:
+        case ExampleThemeable.light:
             switch self {
             case .primary:
                 return .combined(
@@ -66,7 +60,7 @@ public extension ExampleStylableView where View:UIButton{
                     .color(.green)
                 )
             }
-        case .dark:
+        case ExampleThemeable.dark:
             switch self {
             case .primary:
                 return .combined(
