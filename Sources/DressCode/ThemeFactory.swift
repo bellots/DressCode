@@ -42,8 +42,11 @@ public class ThemeFactory<Theme:Themeable>{
     
     var viewControllerToUpdate = [ViewControllerThemeable]()
     
-    public func registerUpdates(for viewController:ViewControllerThemeable) {
+    public func registerUpdates(for viewController:ViewControllerThemeable, setuppingStyle setupStyle:Bool = true) {
         viewControllerToUpdate.append(viewController)
+        if setupStyle {
+            viewController.setupStyles(for: current)
+        }
     }
     
     public func setupStyles(){
