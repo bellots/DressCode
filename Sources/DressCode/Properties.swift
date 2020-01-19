@@ -27,24 +27,6 @@ public extension Property {
     }
 }
 
-//public extension Property {
-//    static func theme(for styleView:StyleView<Element>, forTheme theme:Themeable = ThemeFactory.defaultTheme) -> Property<Element>{
-//        return styleView.style(for: theme)
-//    }
-//}
-//
-//public extension Property where Element:UILabel{
-//    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
-//        return styleView.style(for: theme)
-//    }
-//}
-//
-//public extension Property where Element:UIButton{
-//    static func theme(for styleView:StyleView<Element>, forTheme theme:Theme = ThemeFactory.defaultTheme) -> Property<Element>{
-//        return styleView.style(for: theme)
-//    }
-//}
-
 public extension Property where Element: UIView {
     static func backgroundColor(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.backgroundColor)
@@ -95,7 +77,7 @@ public extension Property where Element: UIButton {
         .custom(value, keyPath: \.backgroundColor)
     }
 
-    static func font(_ value: UIFont) -> Property<Element>{
+    static func font(_ value: UIFont) -> Property<Element> {
         .custom { $0.titleLabel?.setStyle(.font(value)) }
     }
 
@@ -105,5 +87,53 @@ public extension Property where Element: UIButton {
     static func attributedText(_ value: NSAttributedString, for state: UIButton.State = .normal) -> Property<Element> {
 
         .custom { $0.setAttributedTitle(value, for: state) }
+    }
+}
+
+public extension Property where Element: UITextField {
+    
+    static func placeholder(_ value: String) -> Property<Element> {
+        .custom(value, keyPath: \.placeholder)
+    }
+    
+    static func text(_ value: String) -> Property<Element> {
+        .custom(value, keyPath: \.text)
+    }
+    
+    static func color(_ value: UIColor) -> Property<Element> {
+        .custom(value, keyPath: \.textColor)
+    }
+
+    static func placeholderColor(_ value: UIColor) -> Property<Element> {
+        .custom(value, keyPath: \.placeholderColor)
+    }
+    
+    static func font(_ value: UIFont) -> Property<Element> {
+        .custom(value, keyPath: \.font)
+    }
+ 
+    static func type(_ value: UITextField.KeyboardType) -> Property<Element> {
+        switch value{
+        case .email:
+            return .combined(
+                .custom(.emailAddress, keyPath: \.keyboardType),
+                .custom(false, keyPath: \.isSecureTextEntry)
+            )
+        case .password:
+            return .combined(
+                .custom(.default, keyPath: \.keyboardType),
+                .custom(true, keyPath: \.isSecureTextEntry)
+            )
+        case .normal:
+            return .combined(
+                .custom(.default, keyPath: \.keyboardType),
+                .custom(false, keyPath: \.isSecureTextEntry)
+            )
+        case .numeric:
+            return .combined(
+                .custom(.numberPad, keyPath: \.keyboardType),
+                .custom(false, keyPath: \.isSecureTextEntry)
+            )
+        }
     }
 }
