@@ -23,27 +23,27 @@ public extension Stylable{
     }
 }
 
-public extension ExampleStylableView where View:UILabel{
-    func applyStyleView(for theme:Themeable = ExampleThemeable.defaultTheme, to views:View...){
-        views.forEach({$0.setStyle(self.style(for: theme))})
-    }
-}
+//public extension ExampleStylableView where View:UILabel{
+//    func applyStyleView(for theme:Themeable = ExampleThemeable.defaultTheme, to views:View...){
+//        views.forEach({$0.setStyle(self.style(for: theme))})
+//    }
+//}
+//
+//public extension ExampleStylableView where View:UIButton{
+//    func applyStyleView(for theme:Themeable = ExampleThemeable.defaultTheme, to views:View...){
+//        views.forEach({$0.setStyle(self.style(for: theme))})
+//    }
+//}
 
-public extension ExampleStylableView where View:UIButton{
-    func applyStyleView(for theme:Themeable = ExampleThemeable.defaultTheme, to views:View...){
-        views.forEach({$0.setStyle(self.style(for: theme))})
-    }
-}
-
-public extension UILabel{
-    func applyStyleView(_ styleView:ExampleStylableView<UILabel>, for theme:Themeable = ExampleThemeable.defaultTheme){
+public extension UIView{
+    func applyStyleView(_ styleView:ExampleStylableView<UIView>, for theme:Themeable = ExampleThemeable.defaultTheme){
         setStyle(styleView.style(for: theme))
     }
 }
 
-public extension UIButton{
-    func applyStyleView(_ styleView:ExampleStylableView<UIButton>, for theme:Themeable = ExampleThemeable.defaultTheme){
-        setStyle(styleView.style(for: theme))
-    }
-}
+//public extension UIButton{
+//    func applyStyleView(_ styleView:ExampleStylableView<UIButton>, for theme:Themeable = ExampleThemeable.defaultTheme){
+//        setStyle(styleView.style(for: theme))
+//    }
+//}
 
