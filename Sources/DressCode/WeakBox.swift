@@ -7,11 +7,11 @@
 
 import UIKit
 
-struct WeakBox<T: AnyObject> {
+struct WeakBox {
     
-    weak var reference: T?
+    weak var reference: ViewControllerThemeable?
 
-    init(_ reference: @autoclosure () -> T) {
+    init(_ reference: @autoclosure () -> ViewControllerThemeable) {
         self.reference = reference()
     }
     

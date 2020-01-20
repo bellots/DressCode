@@ -16,7 +16,7 @@ public class ThemeFactory<Theme:Themeable>{
     
     public var current:Theme {
         didSet{
-            viewControllerToUpdate.forEach({($0.reference as? ViewControllerThemeable)?.setupStyles(for: current)})
+            viewControllerToUpdate.forEach({$0.reference?.setupStyles(for: current)})
             delegate?.didUpdateTheme(to: current)
             for window in UIApplication.shared.windows {
                 for view in window.subviews {
@@ -32,7 +32,7 @@ public class ThemeFactory<Theme:Themeable>{
     public init(theme:Theme, delegate:ThemeFactoryDelegate? = nil){
         self.current = theme
         self.delegate = delegate
-        self.viewControllerToUpdate = [WeakBox<UIViewController>]()
+        self.viewControllerToUpdate = [WeakBox]()
     }
 
     public init(theme:Theme, viewControllerToUpdate:ViewControllerThemeable){
@@ -40,7 +40,7 @@ public class ThemeFactory<Theme:Themeable>{
         self.viewControllerToUpdate = [WeakBox(viewControllerToUpdate)]
     }
     
-    var viewControllerToUpdate = [WeakBox<UIViewController>]()
+    var viewControllerToUpdate = [WeakBox]()
     
     public func registerUpdates(for viewController:ViewControllerThemeable, setuppingStyle setupStyle:Bool = true) {
         viewControllerToUpdate.append(WeakBox(viewController))
@@ -50,6 +50,6 @@ public class ThemeFactory<Theme:Themeable>{
     }
     
     public func setupStyles(){
-        viewControllerToUpdate.forEach({($0.reference as? ViewControllerThemeable)?.setupStyles(for: current)})
+        viewControllerToUpdate.forEach({$0.reference?.setupStyles(for: current)})
     }
 }
