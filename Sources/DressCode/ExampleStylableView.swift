@@ -29,20 +29,8 @@ public extension ExampleStylableView where View:UILabel{
     }
 }
 
-public extension ExampleStylableView where View:UIButton{
-    func applyStyleView(for theme:Themeable = ExampleThemeable.defaultTheme, to views:View...){
-        views.forEach({$0.setStyle(self.style(for: theme))})
-    }
-}
-
 public extension UILabel{
     func applyStyleView(_ styleView:ExampleStylableView<UILabel>, for theme:Themeable = ExampleThemeable.defaultTheme){
-        setStyle(styleView.style(for: theme))
-    }
-}
-
-public extension UIButton{
-    func applyStyleView(_ styleView:ExampleStylableView<UIButton>, for theme:Themeable = ExampleThemeable.defaultTheme){
         setStyle(styleView.style(for: theme))
     }
 }
