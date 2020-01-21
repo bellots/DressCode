@@ -29,12 +29,6 @@ public extension ExampleStylableView where View:UIView{
     }
 }
 
-public extension UIView{
-    func applyStyleView(_ styleView:ExampleStylableView<UIView>, for theme:Themeable = ExampleThemeable.defaultTheme){
-        setStyle(styleView.style(for: theme))
-    }
-}
-
 //public extension UIButton{
 //    func applyStyleView(_ styleView:ExampleStylableView<UIButton>, for theme:Themeable = ExampleThemeable.defaultTheme){
 //        setStyle(styleView.style(for: theme))
