@@ -14,7 +14,7 @@ public protocol StylableView{
 }
 
 public extension StylableView{
-    public func style(for theme: Themeable) -> Property<View> {
+    func style(for theme: Themeable) -> Property<View> {
         return .empty()
     }
 }

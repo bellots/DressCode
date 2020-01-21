@@ -96,6 +96,10 @@ public extension Property where Element: UITextField {
         .custom(value, keyPath: \.placeholder)
     }
     
+    static func borderStyle(_ value: UITextField.BorderStyle) -> Property<Element> {
+        .custom(value, keyPath: \.borderStyle)
+    }
+    
     static func text(_ value: String) -> Property<Element> {
         .custom(value, keyPath: \.text)
     }
