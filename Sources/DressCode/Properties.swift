@@ -65,6 +65,9 @@ public extension Property where Element: UILabel {
     static func attributedText(_ value: NSAttributedString) -> Property<Element> {
         .custom(value, keyPath: \.attributedText)
     }
+    static func alignment(_ value: NSTextAlignment) -> Property<Element> {
+        .custom(value, keyPath: \.textAlignment)
+    }
 }
 
 public extension Property where Element: UIButton {
@@ -92,30 +95,44 @@ public extension Property where Element: UIButton {
 
 public extension Property where Element: UITextField {
     
+    
+    /// The string that is displayed when there is no other text in the text field
     static func placeholder(_ value: String) -> Property<Element> {
         .custom(value, keyPath: \.placeholder)
     }
     
+    
+    /// The border style used by the text field
     static func borderStyle(_ value: UITextField.BorderStyle) -> Property<Element> {
         .custom(value, keyPath: \.borderStyle)
     }
     
+    
+    ///The text displayed by the text field
     static func text(_ value: String) -> Property<Element> {
         .custom(value, keyPath: \.text)
     }
     
+    
+    /// The color of the text
     static func color(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.textColor)
     }
 
+    
+    /// The color of the placeholder
     static func placeholderColor(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.placeholderColor)
     }
     
+    
+    /// The font of the text
     static func font(_ value: UIFont) -> Property<Element> {
         .custom(value, keyPath: \.font)
     }
  
+    
+    /// The keyboard style associated with the text object
     static func type(_ value: UITextField.KeyboardType) -> Property<Element> {
         switch value{
         case .email:
@@ -139,5 +156,21 @@ public extension Property where Element: UITextField {
                 .custom(false, keyPath: \.isSecureTextEntry)
             )
         }
+    }
+
+    
+    /// The technique to use for aligning the text.
+    static func alignment(_ value: NSTextAlignment) -> Property<Element> {
+        .custom(value, keyPath: \.textAlignment)
+    }
+}
+
+
+public extension Property where Element: UISegmentedControl {
+    static func selectedColor(_ value: UIColor) -> Property<Element> {
+        .custom(value, keyPath: \.selectedSegmentTintColor)
+    }
+    static func deselectedColor(_ value: UIColor) -> Property<Element> {
+        .custom(value, keyPath: \.tintColor)
     }
 }
