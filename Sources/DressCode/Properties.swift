@@ -83,7 +83,7 @@ public extension Property where Element: UILabel {
     }
     
     /// The label's background color with 0.5 alpha component
-    static func backgroundColor(_ value: UIColor) -> Property<Element> {
+    static func alphaBackgroundColor(_ value: UIColor) -> Property<Element> {
         .custom(value.withAlphaComponent(0.5), keyPath: \.backgroundColor)
     }
 
