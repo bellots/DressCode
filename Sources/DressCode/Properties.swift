@@ -120,7 +120,7 @@ public extension Property where Element: UIButton {
 
     /// The font of the title
     static func font(_ value: UIFont) -> Property<Element> {
-        .custom { $0.titleLabel?.setStyle(.font(value)) }
+        .custom { $0.titleLabel?.setProperties(.font(value)) }
     }
     
     /// The text of the title to use for the specified state. (default .normal)
@@ -216,6 +216,7 @@ public extension Property where Element: UITextField {
 public extension Property where Element: UISegmentedControl {
     
     /// The color to use for highlighting the currently selected segment.
+    @available(iOS 13.0, *)
     static func selectedTintColor(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.selectedSegmentTintColor)
     }
