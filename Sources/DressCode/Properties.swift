@@ -65,8 +65,10 @@ public extension Property where Element: UIView {
     ///   - color: the color of the layer's border
     ///   - width: the width of the layer's border
     static func stroke(_ color:UIColor, _ width:CGFloat) -> Property<Element> {
-        Property.custom(color, keyPath: \.borderColor)
-            .combine(.custom(width, keyPath: \.borderWidth))
+        .grouped(
+            .custom(color, keyPath: \.borderColor),
+            .custom(width, keyPath: \.borderWidth)
+        )
     }
         
 }
@@ -181,22 +183,22 @@ public extension Property where Element: UITextField {
     static func type(_ value: UITextField.KeyboardType) -> Property<Element> {
         switch value{
         case .email:
-            return .combined(
+            return .grouped(
                 .custom(.emailAddress, keyPath: \.keyboardType),
                 .custom(false, keyPath: \.isSecureTextEntry)
             )
         case .password:
-            return .combined(
+            return .grouped(
                 .custom(.default, keyPath: \.keyboardType),
                 .custom(true, keyPath: \.isSecureTextEntry)
             )
         case .normal:
-            return .combined(
+            return .grouped(
                 .custom(.default, keyPath: \.keyboardType),
                 .custom(false, keyPath: \.isSecureTextEntry)
             )
         case .numeric:
-            return .combined(
+            return .grouped(
                 .custom(.numberPad, keyPath: \.keyboardType),
                 .custom(false, keyPath: \.isSecureTextEntry)
             )

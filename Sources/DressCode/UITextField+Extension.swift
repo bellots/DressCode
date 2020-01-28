@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Function utils for UITextField
 public extension UITextField{
     @IBInspectable var placeholderColor: UIColor? {
         get {

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// struct useful to keep weak references in a Swift array
 struct WeakBox {
     
     weak var reference: ViewControllerThemeable?

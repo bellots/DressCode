@@ -16,24 +16,30 @@ public protocol Stylable {
 extension UIView: Stylable {}
 
 public extension Stylable where Self:UIView{
-    static func setStylesGlobally(_ styles: Property<Self>...){
-        styles.forEach({_ in Self.appearance().apply(styles)})
+
+    /// Apply styles directly to the class through UIAppearance
+    static func setStylesGlobally(_ properties: Property<Self>...){
+        properties.forEach({_ in Self.appearance().apply(properties)})
     }
 }
 
 public extension Stylable {
     
-    init(_ style: Property<Self>...) {
+    
+    /// View's init with custom properties
+    init(_ properties: Property<Self>...) {
         self.init()
-        apply(style)
+        apply(properties)
     }
         
-    func setStyle(_ styles: Property<Self>...) {
-        styles.forEach({$0.style(self)})
+    
+    /// Add properties to view in a second time
+    func setProperties(_ properties: Property<Self>...) {
+        properties.forEach({$0.style(self)})
     }
     
-    fileprivate func apply(_ styles: [Property<Self>]) {
-        styles.forEach({$0.style(self)})
+    fileprivate func apply(_ properties: [Property<Self>]) {
+        properties.forEach({$0.style(self)})
     }
     
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Function utils for UIView
 public extension UIView{
     @IBInspectable var cornerRadius: CGFloat {
         get {
