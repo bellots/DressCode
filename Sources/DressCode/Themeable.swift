@@ -15,5 +15,4 @@ import Foundation
 ///  static var defaultTheme:Themeable { return .light }
 /// }
 public protocol Themeable{
-    static var defaultTheme: Themeable { get }
 }

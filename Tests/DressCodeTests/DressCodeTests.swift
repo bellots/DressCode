@@ -2,6 +2,39 @@ import XCTest
 import UIKit
 @testable import DressCode
 
+enum Theme: Themeable {
+    case light
+    case dark
+
+}
+enum TestStyle<View>:String, CaseIterable, StylableView {
+    case test1
+    case test2
+}
+
+extension Property where Element:UILabel {
+    static func style(for styleView:TestStyle<Element>, forTheme theme:Themeable) -> Property<Element>{
+        return styleView.style(for: theme)
+    }
+}
+
+extension TestStyle where View: UILabel {
+    func style(for theme: Themeable) -> Property<View> {
+        switch self {
+        case .test1:
+            return .grouped(
+                .text("test1"),
+                .color(.blue)
+            )
+        case .test2:
+            return .grouped(
+                .style(for: .test1, forTheme: theme),
+                .text("test2")
+            )
+        }
+    }
+}
+
 final class DressCodeTests: XCTestCase {
     
     func testCustomValue() {
@@ -63,9 +96,10 @@ final class DressCodeTests: XCTestCase {
         )
         XCTAssertEqual(label.attributedText, NSAttributedString(string: "wasd"))
         
-//        UILabel.setStylesGlobally(
-//            .color(.purple)
-//        )
+        UILabel.setStylesGlobally(
+            .color(.purple)
+        )
+        
     }
     
     func testButton() {
@@ -151,6 +185,51 @@ final class DressCodeTests: XCTestCase {
         )
         XCTAssertEqual(segmentedControl.tintColor, .yellow)
     }
+    
+    func testStyle() {
+        let view = UIView(
+            TestStyle.test1.style(for: Theme.light)
+        )
+        
+        let label = UILabel(
+            .style(for: .test1, forTheme: Theme.light)
+        )
+        XCTAssertEqual(label.text, "test1")
+        
+        label.setProperties(.style(for: .test2, forTheme: Theme.light))
+        XCTAssertEqual(label.text, "test2")
+    }
+
+    
+    func testThemeFactory() {
+        
+        let themeFactory = ThemeFactory(theme: Theme.light)
+        themeFactory.current = .dark
+    
+        class ViewController:UIViewController, ViewControllerThemeable {
+            
+            func setupStyles(for theme: Themeable) {
+                let label = UILabel()
+                label.setProperties(.alignment(.right))
+            }
+        }
+    
+        let viewController = ViewController()
+        themeFactory.registerUpdates(for: viewController)
+        
+        themeFactory.setupStyles()
+        
+        let themeFactory2 = ThemeFactory(theme: Theme.light, viewControllerToUpdate: viewController)
+        themeFactory2.current = .dark
+        
+        XCTAssert(themeFactory.viewControllerToUpdate.map({$0.isEmpty}).filter({$0}).isEmpty)
+        
+        let window = UIWindow()
+        window.rootViewController = viewController
+        
+        themeFactory.refresh(window: window)
+    }
+    
     
     static var allTests = [
         ("testCustomClosure", testCustomClosure),

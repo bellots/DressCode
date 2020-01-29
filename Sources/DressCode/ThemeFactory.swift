@@ -26,17 +26,20 @@ public class ThemeFactory<Theme:Themeable>{
         didSet{
             viewControllerToUpdate.forEach({$0.reference?.setupStyles(for: current)})
             delegate?.didUpdateTheme(to: current)
-            for window in UIApplication.shared.windows {
-                for view in window.subviews {
-                    view.removeFromSuperview()
-                    window.addSubview(view)
-                }
-            }
         }
     }
     
     public weak var delegate:ThemeFactoryDelegate?
+    private weak var window:UIWindow?
+
     
+    /// Refresh uiwindow children's component style
+    public func refresh(window:UIWindow){
+        for view in window.subviews {
+            view.removeFromSuperview()
+            window.addSubview(view)
+        }
+    }
     
     /// Init with required Themeable and an optional delegate
     /// - Parameters:
