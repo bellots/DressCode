@@ -98,8 +98,7 @@ final class DressCodeTests: XCTestCase {
         
         UILabel.setStylesGlobally(
             .color(.purple)
-        )
-        
+        )        
     }
     
     func testButton() {

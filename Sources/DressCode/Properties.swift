@@ -77,6 +77,21 @@ public extension Property where Element: UIView {
 
 public extension Property where Element: UILabel {
     
+    static func textStyle(_ value:UIFont.TextStyle, forFontName name: String) -> Property<Element> {
+        let userFont =  UIFontDescriptor.preferredFontDescriptor(withTextStyle: value)
+        let pointSize = userFont.pointSize
+        guard let customFont = UIFont(name: name, size: pointSize) else {
+            fatalError("""
+                Failed to load the "\(name)" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        return .custom(UIFontMetrics.default.scaledFont(for: customFont), keyPath: \.font)
+
+//        .custom(UIFontMetrics(forTextStyle: value).scaledFont(for: font), keyPath: \.font)
+    }
+    
     /// The color of the text
     static func color(_ value: UIColor) -> Property<Element> {
         .custom(value, keyPath: \.textColor)
