@@ -7,7 +7,7 @@ let package = Package(
     name: "DressCode",
     platforms: [
         .iOS(
-            .v13
+            .v10
         )
     ],
     products: [

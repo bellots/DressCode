@@ -87,11 +87,15 @@ public extension Property where Element: UILabel {
                 """
             )
         }
+//        return .grouped(
+//            .custom(UIFontMetrics.default.scaledFont(for: customFont), keyPath: \.font),
+//            .custom(true, keyPath: \.adjustsFontForContentSizeCategory)
+//        )
+ 
         return .grouped(
-            .custom(UIFontMetrics.default.scaledFont(for: customFont), keyPath: \.font),
+            .custom(UIFont.preferredCustomFont(forTextStyle: value, fontName: name), keyPath: \.font),
             .custom(true, keyPath: \.adjustsFontForContentSizeCategory)
         )
-            
 //        .custom(UIFontMetrics(forTextStyle: value).scaledFont(for: font), keyPath: \.font)
     }
     
