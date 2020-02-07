@@ -172,8 +172,12 @@ public extension Property where Element: UIButton {
 public extension Property where Element: UITextField {
     
     /// The string that is displayed when there is no other text in the text field
-    static func placeholder(_ value: String) -> Property<Element> {
-        .custom(value, keyPath: \.placeholder)
+    static func placeholder(_ value: String, _ color: UIColor? = nil) -> Property<Element> {
+        if let color = color {
+                let attributedPlaceholder = NSAttributedString(string: value, attributes:[NSAttributedString.Key.foregroundColor: color])
+            return .custom(attributedPlaceholder, keyPath: \.attributedPlaceholder)
+        }
+        return .custom(value, keyPath: \.placeholder)
     }
     
     /// The border style used by the text field
@@ -191,11 +195,6 @@ public extension Property where Element: UITextField {
         .custom(value, keyPath: \.textColor)
     }
 
-    /// The color of the placeholder
-    static func placeholderColor(_ value: UIColor) -> Property<Element> {
-        .custom(value, keyPath: \.placeholderColor)
-    }
-    
     /// The font of the text
     static func font(_ value: UIFont) -> Property<Element> {
         .custom(value, keyPath: \.font)

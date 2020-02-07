@@ -167,7 +167,10 @@ final class DressCodeTests: XCTestCase {
         XCTAssertEqual(textField.isSecureTextEntry, false)
         XCTAssertEqual(textField.keyboardType, .numberPad)
         
-
+        textField.setProperties(
+            .placeholder("prova", .purple)
+        )
+        XCTAssertNotNil(textField.attributedPlaceholder)
     }
     
     
