@@ -9,6 +9,14 @@ import UIKit
 
 /// Function utils for UITextField
 public extension UITextField{
+//    @IBInspectable var placeholderColor: UIColor? {
+//        get {
+//            return self.placeholderColor
+//        }
+//        set {
+//            self.attributedPlaceholder = NSAttributedString(string:self.placeholder ?? "", attributes:[NSAttributedString.Key.foregroundColor: newValue!])
+//        }
+//    }
     
     enum KeyboardType{
         case normal

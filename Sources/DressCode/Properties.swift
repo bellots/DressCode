@@ -177,9 +177,19 @@ public extension Property where Element: UITextField {
                 let attributedPlaceholder = NSAttributedString(string: value, attributes:[NSAttributedString.Key.foregroundColor: color])
             return .custom(attributedPlaceholder, keyPath: \.attributedPlaceholder)
         }
-        return .custom(value, keyPath: \.placeholder)
+        return Property<Element> {
+            if let attribute = $0[keyPath: \.attributedPlaceholder] {
+                let mutable = NSMutableAttributedString(attributedString: attribute)
+                mutable.mutableString.setString(value)                
+                return $0[keyPath: \.attributedPlaceholder] = mutable
+            }
+            else {
+                let attributedPlaceholder = NSAttributedString(string: value)
+                return $0[keyPath: \.attributedPlaceholder] = attributedPlaceholder
+            }
+        }
     }
-    
+        
     /// The border style used by the text field
     static func borderStyle(_ value: UITextField.BorderStyle) -> Property<Element> {
         .custom(value, keyPath: \.borderStyle)
