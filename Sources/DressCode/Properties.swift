@@ -171,7 +171,7 @@ public extension Property where Element: UIButton {
 
 public extension Property where Element: UITextField {
     
-    /// The string that is displayed when there is no other text in the text field
+    /// The string and the color (optional) that is displayed when there is no other text in the text field
     static func placeholder(_ value: String, _ color: UIColor? = nil) -> Property<Element> {
         if let color = color {
                 let attributedPlaceholder = NSAttributedString(string: value, attributes:[NSAttributedString.Key.foregroundColor: color])
@@ -180,7 +180,7 @@ public extension Property where Element: UITextField {
         return Property<Element> {
             if let attribute = $0[keyPath: \.attributedPlaceholder] {
                 let mutable = NSMutableAttributedString(attributedString: attribute)
-                mutable.mutableString.setString(value)                
+                mutable.mutableString.setString(value)
                 return $0[keyPath: \.attributedPlaceholder] = mutable
             }
             else {
@@ -190,6 +190,24 @@ public extension Property where Element: UITextField {
         }
     }
         
+    /// The color of the placeholder color
+    
+    static func placeholderColor(_ value:UIColor) -> Property<Element> {
+        return Property<Element> {
+            let textPlaceholder:String
+            if let attribute = $0[keyPath: \.attributedPlaceholder],
+                let string = NSMutableAttributedString(attributedString: attribute).mutableString as? String{
+                textPlaceholder = string
+            }
+            else {
+                textPlaceholder = $0[keyPath: \.placeholder] ?? ""
+            }
+            let attributedPlaceholder = NSAttributedString(string: textPlaceholder, attributes:[NSAttributedString.Key.foregroundColor: value])
+            return $0[keyPath: \.attributedPlaceholder] = attributedPlaceholder
+        }
+    }
+    
+    
     /// The border style used by the text field
     static func borderStyle(_ value: UITextField.BorderStyle) -> Property<Element> {
         .custom(value, keyPath: \.borderStyle)

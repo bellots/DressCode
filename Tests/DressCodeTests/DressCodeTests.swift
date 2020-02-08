@@ -171,6 +171,10 @@ final class DressCodeTests: XCTestCase {
             .placeholder("helo", .purple)
         )
         
+        
+        textField.setProperties(
+            .placeholderColor(.blue)
+        )
         XCTAssertNotNil(textField.attributedPlaceholder)
     }
     
@@ -186,6 +190,7 @@ final class DressCodeTests: XCTestCase {
         segmentedControl.setProperties(
             .deselectedTintColor(.yellow)
         )
+        
         XCTAssertEqual(segmentedControl.tintColor, .yellow)
     }
     
