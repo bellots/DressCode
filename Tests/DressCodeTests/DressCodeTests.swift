@@ -98,7 +98,19 @@ final class DressCodeTests: XCTestCase {
         
         UILabel.setStylesGlobally(
             .color(.purple)
-        )        
+        )
+        
+        label.setProperties(
+            .textStyle(.body, forFontName: "Georgia")
+        )
+        
+        label.setProperties(
+            .font(UIFont.systemFont(ofSize: 20).bolded.italicized)
+        )
+        
+        label.setProperties(
+            .font(UIFont.systemFont(ofSize: 20).scaled(scaleFactor: 1.2))
+        )
     }
     
     func testButton() {
