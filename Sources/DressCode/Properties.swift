@@ -165,6 +165,15 @@ public extension Property where Element: UIButton {
         .custom { $0.contentHorizontalAlignment = value }
     }
     
+    /// Add target to button directly from properties
+    static func target(_ target: Any?, action: Selector, for event: UIControl.Event) -> Property<Element> {
+        .custom {$0.addTarget(target, action: action, for: event)}
+    }
+    
+    static func touchUpInside(_ action: Selector) -> Property<Element> {
+        .target(nil, action: action, for: .touchUpInside)
+    }
+
 }
 
 //MARK: - UITextField Properties
